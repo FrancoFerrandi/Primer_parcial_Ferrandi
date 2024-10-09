@@ -16,12 +16,8 @@ Seleccione el N° de la opcion deseada:
 9. Salir del programa.
 """
 
-# pacientes = []
-pacientes = [
-    [1237, "paciente_1", 54, "fiebre", 10],
-    [1235, "paciente_2", 30, "hipotiroidismo", 5],
-    [1233, "paciente_3", 24, "neumonia", 20]
-]
+pacientes = []
+
 
 def mostrar_menu(menu: str) -> None:
     """
@@ -179,8 +175,6 @@ def busqueda_paciente_mas_cinco_dias(pacientes:list) -> None:
     mensaje = f"Cantidad de pacientes que tienen mas de 5 dias de internacion: {cantidad_pacientes_mas_cinco_dias}."
     print(mensaje)
 
-# 9. Promedio de días de internación de todos los pacientes.
-# • Implementar una función que calcule el promedio de días de internación de todos los pacientes registrados.
 def promediar_dias_internacion(pacientes:list) -> None:
 
     acumulador_dias_internacion = 0
@@ -196,11 +190,11 @@ def promediar_dias_internacion(pacientes:list) -> None:
     mensaje = f"Promedio de dias de internacion de todos los pacientes: {promedio_dias_internacion_redondeado}."
     print(mensaje)
 
-def ejecutar_opcion(seguir:str) -> bool:
+def ejecutar_opcion(seguir:str) -> str:
     """
-    Recibe parametro "seguir" (bool), se le pregunta un numero de opcion y ejecuta esa opcion(funcion) o finaliza el programa.
-    Parametros: seguir (bool)
-    Salida: seguir (bool)
+    Recibe parametro "seguir" (str), se le pregunta un numero de opcion y ejecuta esa opcion(funcion) o finaliza el programa.
+    Parametros: seguir (str)
+    Salida: seguir (str)
     """
     opcion = int(input("Elige una opcion: "))
     while opcion < 1 or opcion > 9: 
@@ -211,37 +205,43 @@ def ejecutar_opcion(seguir:str) -> bool:
         print("Haz elegido la opcion 1")
         cargar_paciente(pacientes)
         seguir = ""
-    elif opcion == 2:
-        print("Haz elegido la opcion 2")
-        mostrar_lista_pacientes(pacientes)
-        seguir = ""
-    elif opcion == 3:
-        print("Haz elegido la opcion 3")
-        busqueda_paciente_hc(pacientes)
-        seguir = ""
-    elif opcion == 4:
-        print("Haz elegido la opcion 4")
-        ordenar_pacientes(pacientes)
-        seguir = ""
-    elif opcion == 5:
-        print("Haz elegido la opcion 5")
-        mostrar_paciente_mas_dias_internacion(pacientes)
-        seguir = ""
-    elif opcion == 6:
-        print("Haz elegido la opcion 6")
-        mostrar_paciente_menos_dias_internacion(pacientes)
-        seguir = ""
-    elif opcion == 7:
-        print("Haz elegido la opcion 7")
-        busqueda_paciente_mas_cinco_dias(pacientes)
-        seguir = ""
-    elif opcion == 8:
-        print("Haz elegido la opcion 8")
-        promediar_dias_internacion(pacientes)
-        seguir = ""
-    else:
+    elif opcion == 9:
         print("Haz elegido la opcion 9. Haz salido del sistema.")
         seguir = "salir"
+    else:
+        if len(pacientes) == 0:
+            print("No hay pacientes registrados para la operación solicitada.")
+            seguir = ""
+        else:
+            if opcion == 2:
+                print("Haz elegido la opcion 2")
+                mostrar_lista_pacientes(pacientes)
+                seguir = ""
+            elif opcion == 3:
+                print("Haz elegido la opcion 3")
+                busqueda_paciente_hc(pacientes)
+                seguir = ""
+            elif opcion == 4:
+                print("Haz elegido la opcion 4")
+                ordenar_pacientes(pacientes)
+                seguir = ""
+            elif opcion == 5:
+                print("Haz elegido la opcion 5")
+                mostrar_paciente_mas_dias_internacion(pacientes)
+                seguir = ""
+            elif opcion == 6:
+                print("Haz elegido la opcion 6")
+                mostrar_paciente_menos_dias_internacion(pacientes)
+                seguir = ""
+            elif opcion == 7:
+                print("Haz elegido la opcion 7")
+                busqueda_paciente_mas_cinco_dias(pacientes)
+                seguir = ""
+            elif opcion == 8:
+                print("Haz elegido la opcion 8")
+                promediar_dias_internacion(pacientes)
+                seguir = ""
+
     return seguir
 
 seguir = ""
